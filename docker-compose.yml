@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./staticfiles:/app/staticfiles
+      - ./media:/app/media
+    networks:
+      - microservice-network
+    env_file:
+      - .env # Load environment variables from the .env file
+
+networks:
+  microservice-network:
+    driver: bridge
+
+volumes:
+  postgres_data: {} # Declare the volume here
